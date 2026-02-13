@@ -10,7 +10,8 @@ body{
   font-family:'Segoe UI', serif;
   background: radial-gradient(ellipse at bottom, #05060f 0%, #000000 100%);
   color:white;
-  overflow:hidden;
+  overflow-x:hidden;
+overflow-y:auto;
   text-align:center;
 }
 
@@ -51,8 +52,8 @@ body{
   display:none;
   max-width:750px;
   margin:auto;
-  padding:30px;
-  margin-top:10vh;
+  padding:25px 20px;
+  margin-top:8vh;
   animation:fadeIn 1.6s ease;
 }
 .active{
@@ -128,8 +129,7 @@ one traveler drifts in silence.
 <div id="screen3" class="screen">
 <div class="story">
 A warrior by appearance.<br>
-A hopeless romantic by design.<br>
-Simran by its name. <br><br>
+A hopeless romantic by design.<br><br>
 He does not fight for territory.<br>
 He does not fight for power.<br><br>
 He searches for something<br>
@@ -255,8 +255,8 @@ function yesClicked(){
 /* moving no button */
 const noBtn=document.getElementById("noBtn");
 noBtn.addEventListener("mouseover",function(){
-  const x=Math.random()*(window.innerWidth-120);
-  const y=Math.random()*(window.innerHeight-120);
+ const x=Math.random()*(window.innerWidth-140);
+const y=Math.random()*(window.innerHeight-200);
   noBtn.style.left=x+"px";
   noBtn.style.top=y+"px";
 });
