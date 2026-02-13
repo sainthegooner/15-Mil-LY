@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>15 Million Light Years</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', serif;
+  background: radial-gradient(ellipse at bottom, #05060f 0%, #000000 100%);
+  color:white;
+  overflow:hidden;
+  text-align:center;
+}
+
+/* stars */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  animation:twinkle 3s infinite alternate;
+}
+@keyframes twinkle{
+  from{opacity:0.2}
+  to{opacity:1}
+}
+
+/* shooting star */
+.shooting-star{
+  position:absolute;
+  width:150px;
+  height:2px;
+  background:linear-gradient(-45deg, white, transparent);
+  animation:shoot 4s linear;
+}
+@keyframes shoot{
+  from{
+    transform:translateX(-200px) translateY(-200px);
+    opacity:1;
+  }
+  to{
+    transform:translateX(100vw) translateY(100vh);
+    opacity:0;
+  }
+}
+
+/* screens */
+.screen{
+  display:none;
+  max-width:750px;
+  margin:auto;
+  padding:30px;
+  margin-top:10vh;
+  animation:fadeIn 1.6s ease;
+}
+.active{
+  display:block;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(25px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.story{
+  font-size:20px;
+  line-height:1.8;
+  opacity:0.95;
+}
+
+#typeText{
+  font-size:26px;
+  white-space:pre-line;
+  line-height:1.6;
+}
+
+button{
+  padding:14px 28px;
+  font-size:18px;
+  border-radius:12px;
+  border:none;
+  margin-top:35px;
+  cursor:pointer;
+  background:#ff4da6;
+  color:white;
+  box-shadow:0 0 25px rgba(255,77,166,0.8);
+  transition:0.3s;
+}
+button:hover{
+  transform:scale(1.08);
+}
+
+#noBtn{
+  position:absolute;
+}
+
+.countdown{
+  font-size:24px;
+  color:#ffb3ff;
+  margin-top:25px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1: TRANSMISSION -->
+<div id="screen1" class="screen active">
+<div id="typeText"></div>
+<button onclick="nextScreen(2)">Decrypt Transmission</button>
+</div>
+
+<!-- SCREEN 2: CHAOS INTRO -->
+<div id="screen2" class="screen">
+<div class="story">
+Space is chaos.<br><br>
+Empires rise like solar storms.<br>
+Superpowers bend planets to their will.<br><br>
+And somewhere between collapsing stars<br>
+and shifting constellations…<br><br>
+one traveler drifts in silence.
+</div>
+<button onclick="nextScreen(3)">Continue</button>
+</div>
+
+<!-- SCREEN 3: THE WARRIOR -->
+<div id="screen3" class="screen">
+<div class="story">
+A warrior by appearance.<br>
+A hopeless romantic by design.<br><br>
+He does not fight for territory.<br>
+He does not fight for power.<br><br>
+He searches for something<br>
+rarer than victory in this universe.
+</div>
+<button onclick="nextScreen(4)">Continue</button>
+</div>
+
+<!-- SCREEN 4: THE MESSENGER -->
+<div id="screen4" class="screen">
+<div class="story">
+One night, beneath a fractured moon,<br>
+a messenger crosses his path.<br><br>
+Voice low as distant thunder:<br><br>
+“Your victory will not come from force.<br>
+It will come from the one<br>
+whose light steadies your orbit.”
+</div>
+<button onclick="nextScreen(5)">Accept Intel</button>
+</div>
+
+<!-- SCREEN 5: THE HINT -->
+<div id="screen5" class="screen">
+<div class="story">
+A constellation shifts.<br>
+Coordinates recalibrate.<br><br>
+Fifteen million light years away…<br>
+a single star begins to glow differently.<br><br>
+Mission realization:<br><br>
+To win the world,<br>
+he must first find<br>
+his co-commander.
+</div>
+<button onclick="nextScreen(6)">Open Mission File</button>
+</div>
+
+<!-- SCREEN 6: MISSION INVITE -->
+<div id="screen6" class="screen">
+<div class="story">
+🚀 Mission Invitation: Operation Valentine<br><br>
+
+Transmission Incoming…<br><br>
+
+Coordinates: Your Place (Classified)<br>
+Mission Type: Strategic Valentine Briefing<br><br>
+
+📅 Date: February 14<br>
+🕒 Time: 3:30 PM<br>
+🎩 Dress Code: Business Casual (Dress Recommended)<br><br>
+
+The galaxy is unstable.<br>
+External forces are unpredictable.<br><br>
+
+But one mission has been prioritized above all others.
+</div>
+
+<div class="countdown" id="countdown"></div>
+
+<button onclick="nextScreen(7)">View Final Transmission</button>
+</div>
+
+
+<!-- SCREEN 7: FINAL SUSPENSE QUESTION -->
+<div id="screen7" class="screen">
+<div class="story">
+A co-commander is required.<br><br>
+Not a soldier.<br>
+Not an ally.<br><br>
+But someone brave enough<br>
+to leave orbit<br>
+and step into the unknown.<br><br>
+To test whether two forces can align…<br>
+and conquer not a planet —<br>
+but a moment.
+</div>
+
+<h2>Will you accept this classified mission this Valentine’s Day? 🌙</h2>
+
+<button onclick="yesClicked()">Accept Mission 💫</button>
+<button id="noBtn">Decline Mission</button>
+</div>
+
+<!-- SCREEN 8: ACCEPTED -->
+<div id="screen8" class="screen">
+<h1>Transmission Confirmed 🌌</h1>
+<div class="story">
+Co-Commander Status: Accepted.<br><br>
+Mission Date: February 14<br>
+Mission Type: A Table for Two in This Galaxy w/ Lil Magic<br><br>
+The war for the world can wait.<br><br>
+But a moment like this?<br>
+Statistically rare across<br>
+15 million light years.
+</div>
+</div>
+
+<script>
+
+/* typing intro */
+const introText =
+"Incoming encrypted signal...\n\nOrigin: Unknown Sector\n\nDistance: 15,000,000 Light Years\n\nStatus: Mission Critical\n\nDecrypting...";
+
+let i=0;
+function typeWriter(){
+  if(i<introText.length){
+    document.getElementById("typeText").innerHTML+=introText.charAt(i);
+    i++;
+    setTimeout(typeWriter,30);
+  }
+}
+typeWriter();
+
+/* navigation */
+function nextScreen(n){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById("screen"+n).classList.add("active");
+}
+
+function yesClicked(){
+  nextScreen(8);
+}
+
+/* moving no button */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",function(){
+  const x=Math.random()*(window.innerWidth-120);
+  const y=Math.random()*(window.innerHeight-120);
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+});
+
+/* stars */
+for(let i=0;i<260;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.style.left=Math.random()*100+"vw";
+  star.style.top=Math.random()*100+"vh";
+  star.style.animationDelay=Math.random()*3+"s";
+  document.body.appendChild(star);
+}
+
+/* shooting stars */
+setInterval(()=>{
+  let s=document.createElement("div");
+  s.className="shooting-star";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*50+"vh";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),4000);
+},5000);
+
+/* countdown */
+const target=new Date("Feb 14, 2026 15:30:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const d=target-now;
+  const days=Math.floor(d/(1000*60*60*24));
+  const hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const minutes=Math.floor((d%(1000*60*60))/(1000*60));
+  const seconds=Math.floor((d%(1000*60))/1000);
+
+  document.getElementById("countdown").innerHTML =
+  days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+},1000);
+
+</script>
+</body>
+</html>
